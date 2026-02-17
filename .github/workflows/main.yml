@@ -15,5 +15,5 @@ jobs:
 
             - name: start bot
               env:
-                TOKEN: ${{ secrets.APIKEY }}
+                TOKEN: ${{ secrets.SECRET }}
               run: python test.py
