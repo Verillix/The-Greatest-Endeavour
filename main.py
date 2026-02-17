@@ -8,21 +8,8 @@ import os
 from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
 from dotenv import load_dotenv
-from http.server import BaseHTTPRequestHandler
 
-
-class handler(BaseHTTPRequestHandler):
-    def send_dict_response(self, d):
-        """ Sends a dictionary (JSON) back to the client """
-        self.wfile.write(bytes(dumps(d), "utf8"))
-    def do_GET(self):
-      self.send_response(200)
-      self._send_cors_headers()
-      self.end_headers()
- 
-      response = {}
-      response["status"] = "OK"
-      self.send_dict_response(response)
+headers = {'Access-Control-Allow-Origin' : '*'}
 
 class StrToBytes:
     def __init__(self, fileobj):
@@ -55,12 +42,13 @@ def readCurrent():
 @when('click', '#download')
 async def downloadTex():
     url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
-    response = requests.get(url, stream=True)
+    response = requests.get(url, stream=True, headers=headers)
     try:
         with open('The Greatest Endeavour.tex', 'wb') as out_file:
           out_file.write(response.content)
     except Exception as error:
         display(errror)
+
 
 
 
