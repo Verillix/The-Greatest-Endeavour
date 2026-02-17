@@ -10,7 +10,6 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
         self.wfile.write(github_token.encode())
-        print(github_token)
     
     def do_OPTIONS(self):
         self.send_response(200)
