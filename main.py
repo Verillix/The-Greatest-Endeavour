@@ -27,11 +27,11 @@ def download_file(data, filename):
 
 @when('change', '#upload')
     async def processTex(*args):
-    oldTex = await fetch(texURL)
-    oldText = await response.text()
-    newTex = document.getElementById('upload').files.item(0)
-    newText = newText.decode()
-    display(newText)
+        oldTex = await fetch(texURL)
+        oldText = await response.text()
+        newTex = document.getElementById('upload').files.item(0)
+        newText = newText.decode()
+        display(newText)
 
 @when('click', '#downloadTex')
 async def downloadTex():
@@ -75,6 +75,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
