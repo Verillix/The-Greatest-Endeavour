@@ -50,15 +50,23 @@ def download_file(data, filename):
     URL.revokeObjectURL(url)
 
 
-@when('click', '#download')
+@when('click', '#downloadTex')
 async def downloadTex():
     url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
     response = await fetch(url)
     responseText = await response.text()
-    try:
-        download_file(responseText, "The Greatest Endeavour.tex")
-    except Exception as error:
-        display(error)
+    download_file(responseText, "The Greatest Endeavour.tex")
+@when('click', '#downloadPDF')
+async def downloadTex():
+    url = "https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/2561f1c31ce4d7bc6306e9e7f9283f5a24bfcb2e/The%20Greatest%20Endeavour.pdf"
+    filename = "The Greatest Endeavour.pdf"
+    a = document.createElement('a')
+    a.href = url
+    a.download = filename
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
 
 
 
