@@ -42,12 +42,12 @@ async def downloadTex():
     url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
     response = await fetch(url)
     responseText = await response.text()
-    print(responseText)
     try:
         with open('The Greatest Endeavour.txt', 'w') as file:
           file.writelines(responseText)
     except Exception as error:
         display(error)
+
 
 
 
