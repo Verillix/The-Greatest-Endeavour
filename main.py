@@ -9,11 +9,6 @@ from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
 from dotenv import load_dotenv
 
-headers = {
-    'Access-Control-Allow-Methods': 'GET, OPTIONS',
-    'Access-Control-Allow-Origin' : '*'
-}
-
 class StrToBytes:
     def __init__(self, fileobj):
         self.fileobj = fileobj
@@ -45,12 +40,13 @@ def readCurrent():
 @when('click', '#download')
 async def downloadTex():
     url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
-    response = requests.get(url, stream=True, headers=headers)
+    response = requests.get(url, stream=True)
     try:
         with open('The Greatest Endeavour.tex', 'wb') as out_file:
           out_file.write(response.content)
     except Exception as error:
         display(errror)
+
 
 
 
