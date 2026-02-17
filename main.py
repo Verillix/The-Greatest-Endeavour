@@ -1,6 +1,5 @@
 from pyscript import when, display
 from js import document,fetch
-import shutil
 from io import BytesIO, TextIOWrapper
 import base64
 import requests
@@ -46,9 +45,10 @@ async def downloadTex():
     response = requests.get(url, stream=True)
     try:
         with open('The Greatest Endeavour.tex', 'wb') as out_file:
-          shutil.copyfileobj(response.raw, out_file)
+          out_file.write(response.content)
     except Exception as error:
         display(errror)
+
 
 
 
