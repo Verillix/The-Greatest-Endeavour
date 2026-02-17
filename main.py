@@ -45,10 +45,11 @@ async def downloadTex():
     try:
         a = document.createElement('a')
         a.href = url
-        a.download = 'token.txt'
+        a.download = url
         a.click()
     except Exception as error:
         display(error)
+
 
 
 
