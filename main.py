@@ -40,10 +40,10 @@ def readCurrent():
 @when("click", selector="#download")
 async def downloaded(*args):
     try:
-        for key in os.environ:
-            display(key)
+        dotenv_value(TOKEN)
     except Exception as error:
         display(error)
+
 
 
 
