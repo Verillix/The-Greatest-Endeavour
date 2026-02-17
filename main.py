@@ -9,33 +9,8 @@ from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
 from dotenv import load_dotenv
 
-class StrToBytes:
-    def __init__(self, fileobj):
-        self.fileobj = fileobj
-    def read(self, size):
-        return self.fileobj.read(size).encode()
-    def readline(self, size=-1):
-        return self.fileobj.readline(size).encode()
-
-@when('change', '#upload')
-async def processFile(*args):
-    pdf = document.getElementById('upload').files.item(0)
-    my_bytes = await pdf.arrayBuffer()
-    pdf_bytes = my_bytes.to_bytes()
-    pdfFile = BytesIO(pdf_bytes)
-    for i in range(10):
-        display("break")
-    display(pdf_bytes)
-    reader = PdfReader(pdfFile)
-    text = [""]
-    for i in reader.pages:
-        text.append(i.extract_text())
-    
-def readCurrent():
-    pdf = requests.get("https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf")
-    pdf = BytesIO(pdf.content)
-    reader = PdfReader(pdf)
-    display(reader.pages[0].extract_text())
+texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
+pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
 
 def download_file(data, filename):
     blob = Blob.new([data], {"type": "application/x-tex"})
@@ -50,18 +25,27 @@ def download_file(data, filename):
     URL.revokeObjectURL(url)
 
 
+@when('change', '#upload')
+    async def processTex(*args):
+    oldTex = await fetch(texURL)
+    oldText = await response.text()
+    newTex = document.getElementById('upload').files.item(0)
+    newText = newText.decode()
+    display(newText)
+
 @when('click', '#downloadTex')
 async def downloadTex():
-    url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
-    response = await fetch(url)
+    response = await fetch(texURL)
     responseText = await response.text()
     download_file(responseText, "The Greatest Endeavour.tex")
+
+
+
 @when('click', '#downloadPDF')
 async def downloadPDF():
-    url = "https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf"
     filename = "The Greatest Endeavour.pdf"
     a = document.createElement('a')
-    a.href = url
+    a.href = pdfURL
     a.download = filename
     document.body.appendChild(a)
     a.click()
@@ -71,7 +55,29 @@ async def downloadPDF():
 
 
 
-
+#Process uploaded PDF
+'''
+async def processPDF(*args):
+    pdf = document.getElementById('upload').files.item(0)
+    my_bytes = await pdf.arrayBuffer()
+    pdf_bytes = my_bytes.to_bytes()
+    pdfFile = BytesIO(pdf_bytes)
+    for i in range(10):
+        display("break")
+    display(pdf_bytes)
+    reader = PdfReader(pdfFile)
+    text = [""]
+    for i in reader.pages:
+        text.append(i.extract_text())
+'''
+#Read Current PDF
+'''
+def readCurrent():
+    pdf = requests.get("https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf")
+    pdf = BytesIO(pdf.content)
+    reader = PdfReader(pdf)
+    display(reader.pages[0].extract_text())
+'''
 
 
 
