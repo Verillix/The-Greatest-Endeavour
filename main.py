@@ -42,11 +42,12 @@ def readCurrent():
 @when("click", selector="#download")
 async def downloaded(*args):
     try:
-        response = await fetch('https://the-greatest-endeavour.vercel.app/apiGET.py')
+        response = await fetch('https://the-greatest-endeavour.vercel.app/apiGET')
         token = await response.text()
         display(token)
     except Exception as error:
         display(error)
+
 
 
 
