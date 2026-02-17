@@ -1,5 +1,5 @@
 import time
-import zmq
+import pyzmq as zmq
 
 context = zmq.Context()
 socket = context.socket(zmq.REP)
