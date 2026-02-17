@@ -30,6 +30,7 @@ async def processTex(*args):
     oldTex = await fetch(texURL)
     oldText = await oldTex.text()
     newTex = document.getElementById('upload').files.item(0)
+    display(newTex)
     newText = newTex.decode()
     display(newText)
 
@@ -75,6 +76,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
