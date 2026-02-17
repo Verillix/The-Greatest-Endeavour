@@ -39,7 +39,10 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
     
-
+@when('click', '#download')
+async def downloadTex():
+    url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
+    response = requests.get(url, stream=True)
 
 
 
