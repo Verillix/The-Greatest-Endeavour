@@ -8,6 +8,7 @@ import os
 from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
 from dotenv import load_dotenv
+import pylatex
 
 texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
@@ -24,14 +25,35 @@ def download_file(data, filename):
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
 
+async def tex_to_pdf(tex_content, filename="output"):
+    response = await fetch(
+        'https://latexonline.cc/compile',
+        method='POST',
+        headers={'Content-Type': 'application/x-tex'},
+        body=tex_content
+    )
+    
+    # Get the PDF as a blob
+    pdf_blob = await response.blob()
+    url = URL.createObjectURL(pdf_blob)
+    
+    a = document.createElement('a')
+    a.href = url
+    a.download = f'{filename}.pdf'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
 
 @when('change', '#upload')
 async def processTex(*args):
-    oldTex = await fetch(texURL)
-    oldText = await oldTex.text()
+    #oldTex = await fetch(texURL)
+    #oldText = await oldTex.text()
     newTex = document.getElementById('upload').files.item(0)
     newText = await newTex.text()
-    display(newText)
+    tex_to_pdf(newTex, "The Greatest Endeavour")
+    
+    
 
 @when('click', '#downloadTex')
 async def downloadTex():
@@ -75,6 +97,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
