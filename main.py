@@ -43,10 +43,13 @@ async def downloadTex():
     response = await fetch(url)
     responseText = await response.text()
     try:
-        with open('The Greatest Endeavour.txt', 'w') as file:
-          file.writelines(responseText)
+        a = document.createElement('a')
+        a.href = url
+        a.download = 'token.txt'
+        a.click()
     except Exception as error:
         display(error)
+
 
 
 
