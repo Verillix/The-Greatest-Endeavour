@@ -1,3 +1,4 @@
 import os
 SECRET = os.environ['TOKEN']
-print(SECRET)
+if "teehee" in SECRET:
+  print("yippeee")
