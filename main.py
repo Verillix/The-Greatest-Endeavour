@@ -44,9 +44,10 @@ async def downloaded(*args):
     try:
         response = await fetch('https://your-vercel-app.vercel.app/api/get_token')
         token = await response.text()
-        print(token)
+        display(token)
     except Exception as error:
         display(error)
+
 
 
 
