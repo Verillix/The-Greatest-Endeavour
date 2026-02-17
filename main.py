@@ -41,8 +41,11 @@ def readCurrent():
     
 @when('click', '#download')
 async def downloadTex():
+    display("clicked")
     url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
     response = requests.get(url, stream=True)
+    display(response)
+
 
 
 
