@@ -1,26 +1,19 @@
-name: Deploy to GitHub Pages
-    on:
-      push:
-        branches:
-          - master
-    jobs:
-      build-and-deploy:
+name: build bot.py
+on: [push]
+
+jobs:
+    build:
         runs-on: ubuntu-latest
         steps:
-        - name: Checkout
-          uses: actions/checkout@v1
+            - name: load content
+              uses: actions/checkout@v2
+              
+            - name: load python
+              uses: actions/setup-python@v4
+              with:
+                python-version: '3.10' # install the python version needed
 
-        - name: Build
-          run: |
-            npm install
-            npm run-script build
-          env:
-            REACT_APP_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.REACT_APP_INSTAGRAM_ACCESS_TOKEN }}
-            REACT_APP_SMTP_SECURE_TOKEN: ${{ secrets.REACT_APP_SMTP_SECURE_TOKEN }}
-
-        - name: Deploy
-          uses: JamesIves/github-pages-deploy-action@releases/v3
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_KEY }}
-            BRANCH: gh-pages
-            FOLDER: dist
+            - name: start bot
+              env:
+                TOKEN: ${{ secrets.APIKEY }}
+              run: python test.py
