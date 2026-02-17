@@ -8,6 +8,7 @@ import os
 from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
 from dotenv import load_dotenv
+import asyncio
 
 texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
@@ -24,7 +25,7 @@ def download_file(data, filename):
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
 
-def tex_to_pdf(tex_content, filename="output"):
+async def tex_to_pdf(tex_content, filename="output"):
     response = await fetch(
         'https://latexonline.cc/compile',
         method='POST',
@@ -50,7 +51,7 @@ async def processTex(*args):
     #oldText = await oldTex.text()
     newTex = document.getElementById('upload').files.item(0)
     newText = await newTex.text()
-    tex_to_pdf(newTex, "The Greatest Endeavour")
+    asyncio.ensure_future(tex_to_pdf(newTex, "The Greatest Endeavour"))
     
     
 
@@ -96,6 +97,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
