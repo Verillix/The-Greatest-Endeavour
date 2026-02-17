@@ -9,7 +9,10 @@ from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
 from dotenv import load_dotenv
 
-headers = {'Access-Control-Allow-Origin' : '*'}
+headers = {
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Origin' : '*'
+}
 
 class StrToBytes:
     def __init__(self, fileobj):
@@ -48,6 +51,7 @@ async def downloadTex():
           out_file.write(response.content)
     except Exception as error:
         display(errror)
+
 
 
 
