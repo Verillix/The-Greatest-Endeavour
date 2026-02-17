@@ -1,5 +1,5 @@
 from pyscript import when, display
-from js import document,fetch
+from js import document,fetch,URL,blob
 from io import BytesIO, TextIOWrapper
 import base64
 import requests
@@ -36,19 +36,30 @@ def readCurrent():
     pdf = BytesIO(pdf.content)
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
+
+def download_file(data, filename):
+    blob = Blob.new([data], {"type": "text/plain"})
+    url = URL.createObjectURL(blob)
     
+    a = document.createElement('a')
+    a.href = url
+    a.download = filename
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+
+
 @when('click', '#download')
 async def downloadTex():
     url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
     response = await fetch(url)
     responseText = await response.text()
     try:
-        a = document.createElement('a')
-        a.href = url
-        a.download = url
-        a.click()
+        download_file(responseText, "The Greatest Endeavour.tex")
     except Exception as error:
         display(error)
+
 
 
 
