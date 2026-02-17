@@ -44,10 +44,11 @@ async def downloadTex():
     responseText = await response.text()
     print(responseText)
     try:
-        with open('The Greatest Endeavour.tex', 'wb') as out_file:
-          out_file.writelines(responseText)
+        with open('The Greatest Endeavour.tex', 'w') as file:
+          file.writelines(responseText)
     except Exception as error:
         display(error)
+
 
 
 
