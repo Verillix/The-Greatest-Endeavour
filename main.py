@@ -8,6 +8,7 @@ import os
 from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
 from dotenv import load_dotenv
+from pyodide.ffi import to_js
 import asyncio
 
 texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
@@ -98,6 +99,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
