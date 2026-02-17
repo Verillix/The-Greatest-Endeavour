@@ -46,6 +46,8 @@ async def downloaded(*args):
         #config = dotenv_values(".env")
         for key, value in os.environ.items():
             display('{}: {}'.format(key, value))
+        display(secrets.APIKEY)
     except Exception as error:
+
 
         display(error)
