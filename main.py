@@ -8,6 +8,7 @@ import os
 from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
 from dotenv import dotenv_values
+import zmq
 
 class StrToBytes:
     def __init__(self, fileobj):
@@ -39,10 +40,22 @@ def readCurrent():
 
 @when("click", selector="#download")
 async def downloaded(*args):
-    try:
-        dotenv_value(TOKEN)
-    except Exception as error:
-        display(error)
+    context = zmq.Context()
+    
+    #  Socket to talk to server
+    display("Connecting to hello world server…")
+    socket = context.socket(zmq.REQ)
+    socket.connect("tcp://localhost:5555")
+    
+    #  Do 10 requests, waiting each time for a response
+    for request in range(10):
+        display(f"Sending request {request} …")
+        socket.send(b"Hello")
+    
+        #  Get the reply.
+        message = socket.recv()
+        display(f"Received reply {request} [ {message} ]")
+
 
 
 
