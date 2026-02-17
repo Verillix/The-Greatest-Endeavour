@@ -42,13 +42,11 @@ def readCurrent():
 @when("click", selector="#download")
 async def downloaded(*args):
     try:
-        #key = os.environ["APIKEY"]
-        #config = dotenv_values(".env")
-        for key, value in os.environ.items():
-            display('{}: {}'.format(key, value))
-        display(secrets.APIKEY)
+        key = os.environ["TOKEN"]
+        display(key)
     except Exception as error:
 
 
         display(error)
+
 
