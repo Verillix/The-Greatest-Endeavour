@@ -7,7 +7,9 @@ import codecs
 import os
 from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
-from dotenv import dotenv_values
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class StrToBytes:
     def __init__(self, fileobj):
@@ -40,10 +42,11 @@ def readCurrent():
 @when("click", selector="#download")
 async def downloaded(*args):
     try:
-        token = os.environ["API_KEY"]
+        token = os.getenv("API_KEY")
         display(token)
     except Exception as error:
         display(error)
+
 
 
 
