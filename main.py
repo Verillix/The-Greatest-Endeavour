@@ -40,7 +40,12 @@ def readCurrent():
 
 @when("click", selector="#download")
 async def downloaded(*args):
-    display("Blehhhhhh")
+    try:
+        token = os.environ["API_KEY"]
+        display(token)
+    except Exception as error:
+        display(error)
+
 
 
 
