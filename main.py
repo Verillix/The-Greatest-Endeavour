@@ -24,7 +24,7 @@ def download_file(data, filename):
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
 
-async def tex_to_pdf(tex_content, filename="output"):
+def tex_to_pdf(tex_content, filename="output"):
     response = await fetch(
         'https://latexonline.cc/compile',
         method='POST',
@@ -96,6 +96,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
