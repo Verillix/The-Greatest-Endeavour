@@ -42,9 +42,12 @@ def readCurrent():
 @when("click", selector="#download")
 async def downloaded(*args):
     try:
-        display(os.environ)
+        response = await fetch('https://your-vercel-app.vercel.app/api/get_token')
+        token = await response.text()
+        print(token)
     except Exception as error:
         display(error)
+
 
 
 
