@@ -62,9 +62,6 @@ async def processPDF(*args):
     my_bytes = await pdf.arrayBuffer()
     pdf_bytes = my_bytes.to_bytes()
     pdfFile = BytesIO(pdf_bytes)
-    for i in range(10):
-        display("break")
-    display(pdf_bytes)
     reader = PdfReader(pdfFile)
     text = [""]
     for i in reader.pages:
@@ -78,6 +75,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
