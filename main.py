@@ -1,5 +1,5 @@
 from pyscript import when, display
-from js import document,fetch,URL,blob
+from js import document,fetch,URL,Blob
 from io import BytesIO, TextIOWrapper
 import base64
 import requests
@@ -38,7 +38,7 @@ def readCurrent():
     display(reader.pages[0].extract_text())
 
 def download_file(data, filename):
-    blob = Blob.new([data], {"type": "text/plain"})
+    blob = Blob.new([data], {"type": "application/x-tex"})
     url = URL.createObjectURL(blob)
     
     a = document.createElement('a')
@@ -59,6 +59,7 @@ async def downloadTex():
         download_file(responseText, "The Greatest Endeavour.tex")
     except Exception as error:
         display(error)
+
 
 
 
