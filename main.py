@@ -38,10 +38,8 @@ def readCurrent():
     pdf = BytesIO(pdf.content)
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
-
-@when("click", selector="#download")
-async def downloaded(*args):
     
+
 
 
 
