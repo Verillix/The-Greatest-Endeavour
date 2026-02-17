@@ -12,11 +12,17 @@ from http.server import BaseHTTPRequestHandler
 
 
 class handler(BaseHTTPRequestHandler):
+    def send_dict_response(self, d):
+        """ Sends a dictionary (JSON) back to the client """
+        self.wfile.write(bytes(dumps(d), "utf8"))
     def do_GET(self):
-        self.send_response(200)
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
-        self.end_headers()
+      self.send_response(200)
+      self._send_cors_headers()
+      self.end_headers()
+ 
+      response = {}
+      response["status"] = "OK"
+      self.send_dict_response(response)
 
 class StrToBytes:
     def __init__(self, fileobj):
@@ -55,6 +61,7 @@ async def downloadTex():
           out_file.write(response.content)
     except Exception as error:
         display(errror)
+
 
 
 
