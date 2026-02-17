@@ -12,7 +12,7 @@ from http.server import BaseHTTPRequestHandler
 
 
 class handler(BaseHTTPRequestHandler):
-    def do_OPTIONS(self):
+    def do_GET(self):
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
@@ -55,6 +55,7 @@ async def downloadTex():
           out_file.write(response.content)
     except Exception as error:
         display(errror)
+
 
 
 
