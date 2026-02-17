@@ -1,5 +1,6 @@
 from pyscript import when, display
 from js import document,fetch
+import shutil
 from io import BytesIO, TextIOWrapper
 import base64
 import requests
@@ -41,10 +42,11 @@ def readCurrent():
     
 @when('click', '#download')
 async def downloadTex():
-    display("clicked")
     url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
     response = requests.get(url, stream=True)
-    display(response)
+    with open('The Greatest Endeavour.tex', 'wb') as out_file:
+      shutil.copyfileobj(response.raw, out_file)
+
 
 
 
