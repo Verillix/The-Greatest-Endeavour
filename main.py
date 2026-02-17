@@ -35,6 +35,7 @@ async def tex_to_pdf(tex_content, filename="output"):
     
     # Get the PDF as a blob
     pdf_blob = await response.blob()
+    '''
     url = URL.createObjectURL(pdf_blob)
     
     a = document.createElement('a')
@@ -44,7 +45,7 @@ async def tex_to_pdf(tex_content, filename="output"):
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-
+    '''
 @when('change', '#upload')
 async def processTex(*args):
     #oldTex = await fetch(texURL)
@@ -97,6 +98,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
