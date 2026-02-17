@@ -44,8 +44,12 @@ def readCurrent():
 async def downloadTex():
     url = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
     response = requests.get(url, stream=True)
-    with open('The Greatest Endeavour.tex', 'wb') as out_file:
-      shutil.copyfileobj(response.raw, out_file)
+    try:
+        with open('The Greatest Endeavour.tex', 'wb') as out_file:
+          shutil.copyfileobj(response.raw, out_file)
+    except Exception as error:
+        display(errror)
+
 
 
 
