@@ -29,7 +29,7 @@ async def tex_to_pdf(tex_content, filename="output"):
     response = await fetch(
         'https://latexonline.cc/compile',
         method='POST',
-        headers={'Content-Type': 'application/x-tex'},
+        headers=to_js({'Content-Type': 'application/x-tex'}),
         body=tex_content
     )
     
@@ -98,6 +98,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
