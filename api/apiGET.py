@@ -4,7 +4,7 @@ import base64
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        github_token = os.environ.get('API_KEY')
+        github_token = os.environ.get('GIT_TOKEN')
         self.send_response(200)
         self.send_header('Content-Type', 'text/plain')
         self.send_header('Access-Control-Allow-Origin', '*')
