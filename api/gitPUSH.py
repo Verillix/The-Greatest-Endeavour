@@ -28,12 +28,6 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()
         self.wfile.write(response.content)
-    except Exception as e:
-            self.send_response(500)
-            self.send_header('Content-Type', 'text/plain')
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            self.wfile.write(str(e).encode())
 
     def do_OPTIONS(self):
         self.send_response(200)
