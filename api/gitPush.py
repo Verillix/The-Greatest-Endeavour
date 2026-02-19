@@ -6,8 +6,8 @@ from http.server import BaseHTTPRequestHandler
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
-        token = os.environ.get('GITHUB_TOKEN')
-        repo = os.environ.get('GITHUB_REPO')
+        token = os.environ.get('GIT_TOKEN')
+        repo = os.environ.get('GIT_REPO')
 
         content_length = int(self.headers.get('Content-Length', 0))
         body = json.loads(self.rfile.read(content_length))
