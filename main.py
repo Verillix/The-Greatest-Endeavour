@@ -39,7 +39,7 @@ async def processTex(*args):
     
 async def push_file(content, filename):
     response = await fetch(
-        'https://the-greatest-endeavour.vercel.app/api/gitPUSH.py',
+        'https://the-greatest-endeavour.vercel.app/api/gitPUSH',
         method='POST',
         headers=to_js({'Content-Type': 'application/json', 'Access-Control-Allow-Origin' : '*'}),
         body=json.dumps({'filename': filename, 'content': content})
@@ -91,6 +91,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
