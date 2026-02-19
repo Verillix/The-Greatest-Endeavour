@@ -38,7 +38,7 @@ async def push_file(content, filename):
         body=json.dumps({'filename': filename, 'content': content})
     )
     print('Done!' if response.ok else 'Failed!')
-    asyncio.ensure_future(push_file(content, test_filename))
+    asyncio.ensure_future(push_file(content, "test.tex"))
 #async def processTex(*args):
     #oldTex = await fetch(texURL)
     #oldText = await oldTex.text()
@@ -93,6 +93,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
