@@ -41,7 +41,7 @@ async def push_file(content, filename):
     response = await fetch(
         'https://the-greatest-endeavour.vercel.app/push/gitPUSH',
         method='POST',
-        headers=to_js({'Content-Type': 'application/json'}),
+        headers=to_js({'Content-Type': 'application/json', 'Access-Control-Allow-Origin' : '*'}),
         body=json.dumps({'filename': filename, 'content': content})
     )
     print('Done!' if response.ok else 'Failed!')
@@ -91,6 +91,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
