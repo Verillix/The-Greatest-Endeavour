@@ -32,7 +32,7 @@ async def push_file(content, filename):
     content = document.getElementById('upload').files.item(0)
     filename = "Test.tex"
     response = await fetch(
-        'https://your-vercel-app.vercel.app/api/push',
+        'https://the-greatest-endeavour.vercel.app/api/gitPush',
         method='POST',
         headers=to_js({'Content-Type': 'application/json'}),
         body=json.dumps({'filename': filename, 'content': content})
@@ -93,6 +93,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
