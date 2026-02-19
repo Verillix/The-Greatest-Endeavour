@@ -2,7 +2,6 @@
     "builds": [
         {
             "src": "api/*.py",
-            "src": "push/*.py",
             "use": "@vercel/python"
         }
     ]
