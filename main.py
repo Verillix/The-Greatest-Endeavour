@@ -28,6 +28,8 @@ def download_file(data, filename):
     URL.revokeObjectURL(url)
 
 @when('change', '#upload')
+content = document.getElementById('upload').files.item(0)
+filename = "Test.tex"
 async def push_file(content, filename):
     response = await fetch(
         'https://your-vercel-app.vercel.app/api/push',
@@ -91,6 +93,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
