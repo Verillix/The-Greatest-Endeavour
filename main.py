@@ -28,17 +28,9 @@ def download_file(data, filename):
     URL.revokeObjectURL(url)
 
 @when('change', '#upload')
-async def push_file(content, filename):
-    content = document.getElementById('upload').files.item(0)
-    filename = "Test.tex"
-    response = await fetch(
-        'https://the-greatest-endeavour.vercel.app/api/gitPush',
-        method='POST',
-        headers=to_js({'Content-Type': 'application/json'}),
-        body=json.dumps({'filename': filename, 'content': content})
-    )
-    print('Done!' if response.ok else 'Failed!')
-#async def processTex(*args):
+async def processTex(*args):
+    content = document.getElementById('upload').files.item(0) 
+    asyncio.ensure_future(push_file(content, "test.tex"))
     #oldTex = await fetch(texURL)
     #oldText = await oldTex.text()
     #newTex = document.getElementById('upload').files.item(0)
@@ -54,8 +46,6 @@ async def push_file(content, filename):
         body=json.dumps({'filename': filename, 'content': content})
     )
     print('Done!' if response.ok else 'Failed!')
-content = document.getElementById('upload').files.item(0) 
-asyncio.ensure_future(push_file(your_content, "test.tex"))
 
 
 @when('click', '#downloadTex')
@@ -102,6 +92,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
