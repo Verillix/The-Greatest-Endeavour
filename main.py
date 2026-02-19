@@ -30,6 +30,7 @@ def download_file(data, filename):
 @when('change', '#upload')
 async def processTex(*args):
     content = document.getElementById('upload').files.item(0) 
+    content = await content.text()
     asyncio.ensure_future(push_file(content, "test.tex"))
     #oldTex = await fetch(texURL)
     #oldText = await oldTex.text()
@@ -90,6 +91,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
