@@ -39,7 +39,7 @@ async def processTex(*args):
     
 async def push_file(content, filename):
     response = await fetch(
-        'https://the-greatest-endeavour.vercel.app/api/gitPUSH',
+        'https://the-greatest-endeavour.vercel.app/api/gitPUSH.py',
         method='POST',
         headers=to_js({'Content-Type': 'application/json', 'Access-Control-Allow-Origin' : '*'}),
         body=json.dumps({'filename': filename, 'content': content})
@@ -52,7 +52,7 @@ async def downloadTex():
     response = await fetch(texURL)
     responseText = await response.text()
     #download_file(responseText, "The Greatest Endeavour.tex")
-    response = await fetch('https://the-greatest-endeavour.vercel.app/api/apiGET')
+    response = await fetch('https://the-greatest-endeavour.vercel.app/api/apiGET.py')
     token = await response.text()  # raw text
     print(token)
 
@@ -91,6 +91,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
