@@ -9,6 +9,7 @@ from pypdf import PdfReader,PdfWriter
 from pyodide.http import open_url
 from dotenv import load_dotenv
 from pyodide.ffi import to_js
+import json
 import asyncio
 
 texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
@@ -27,11 +28,20 @@ def download_file(data, filename):
     URL.revokeObjectURL(url)
 
 @when('change', '#upload')
-async def processTex(*args):
+async def push_file(content, filename):
+    response = await fetch(
+        'https://your-vercel-app.vercel.app/api/push',
+        method='POST',
+        headers=to_js({'Content-Type': 'application/json'}),
+        body=json.dumps({'filename': filename, 'content': content})
+    )
+    print('Done!' if response.ok else 'Failed!')
+    asyncio.ensure_future(push_file(your_content, "myfile.tex"))
+#async def processTex(*args):
     #oldTex = await fetch(texURL)
     #oldText = await oldTex.text()
-    newTex = document.getElementById('upload').files.item(0)
-    newText = await newTex.text()
+    #newTex = document.getElementById('upload').files.item(0)
+    #newText = await newTex.text()
     
     
     
@@ -81,6 +91,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
