@@ -36,8 +36,6 @@ async def processTex(*args):
     #newTex = document.getElementById('upload').files.item(0)
     #newText = await newTex.text()
     
-    
-@when('click','#uploadToGit')
 async def push_file(content, filename):
     response = await fetch(
         'https://the-greatest-endeavour.vercel.app/api/gitPush',
@@ -92,6 +90,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
