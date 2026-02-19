@@ -30,15 +30,15 @@ def download_file(data, filename):
 @when('change', '#upload')
 async def push_file(content, filename):
     content = document.getElementById('upload').files.item(0)
-    #test_filename = "Test.tex"
+    filename = "Test.tex"
     response = await fetch(
         'https://the-greatest-endeavour.vercel.app/api/gitPush',
         method='POST',
         headers=to_js({'Content-Type': 'application/json'}),
-        body=json.dumps({'test.tex': filename, 'content': content})
+        body=json.dumps({'filename': filename, 'content': content})
     )
     print('Done!' if response.ok else 'Failed!')
-    asyncio.ensure_future(push_file(content, filename))
+asyncio.ensure_future(push_file(content, filename))
 #async def processTex(*args):
     #oldTex = await fetch(texURL)
     #oldText = await oldTex.text()
