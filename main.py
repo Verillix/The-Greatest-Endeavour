@@ -42,7 +42,7 @@ async def downloadTex():
     response = await fetch(texURL)
     responseText = await response.text()
     #download_file(responseText, "The Greatest Endeavour.tex")
-    response = await fetch('https://verillix.github.io/The-Greatest-Endeavour/api/apiGET')
+    response = await fetch('https://verillix.github.io/The-Greatest-Endeavour/api/apiGET.py')
     token = await response.text()  # raw text
     print(token)
 
@@ -81,6 +81,7 @@ def readCurrent():
     reader = PdfReader(pdf)
     display(reader.pages[0].extract_text())
 '''
+
 
 
 
