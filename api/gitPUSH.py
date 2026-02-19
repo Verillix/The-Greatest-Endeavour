@@ -4,6 +4,8 @@ import base64
 import requests
 from http.server import BaseHTTPRequestHandler
 
+display("hi!")
+
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         token = os.environ.get('GIT_TOKEN')
