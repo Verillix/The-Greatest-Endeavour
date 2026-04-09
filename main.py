@@ -21,8 +21,9 @@ headers = {
 }
 
 def download_file(data, filename):
-    blob = Blob.new([data], {"type": "application/x-tex"})
-    url = URL.createObjectURL(blob)
+
+    #blob = Blob.new([data], {"type": "application/x-tex"})
+    #url = URL.createObjectURL(blob)
     
     a = document.createElement('a')
     a.href = url
