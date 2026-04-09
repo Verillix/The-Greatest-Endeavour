@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from pyodide.ffi import to_js
 import json
 import asyncio
+import pygit2
 
 texURL = 'https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
@@ -31,7 +32,24 @@ def download_file(data, filename):
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-        
+
+
+async def IterateDirectory(repo, branch):
+    tree = repo.revparse_single(branch).tree
+    trees_and_paths = [(tree, [])]
+    # keep going until there is no more data
+    while len(trees_and_paths) != 0:
+        tree, path = trees_and_paths.pop() # take the last entry
+        for entry in tree:
+            if entry.filemode == pygit2.GIT_FILEMODE_TREE:
+                next_tree = repo.get(entry.id)
+                next_path = list(path)
+                next_path.append(entry.name)
+                trees_and_paths.append((next_tree, next_path,))
+            else:
+                yield os.path.join(*path, entry.name)
+
+
 @when('change', '#upload')
 async def processTex(*args):
     content = document.getElementById('upload').files.item(0)
@@ -50,7 +68,8 @@ async def push_file(content, filename):
         print(error)
 
 @when('click', '#downloadTex')
-async def downloadTex():
+async def downloadTex()
+    print(list(IterateDirectory("The-Greatest-Endeavour","main")))
     download_file(texURL, "LaTeX.dir")
 
 @when('click', '#downloadPDF')
