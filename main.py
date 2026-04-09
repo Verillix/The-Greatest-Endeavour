@@ -12,6 +12,7 @@ from pyodide.ffi import to_js
 import json
 import asyncio
 from parsel import Selector
+from fastapi import FastAPI
 
 texURL = 'https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
@@ -54,9 +55,13 @@ async def push_file(content, filename):
 @when('click', '#downloadTex')
 async def downloadTex():
         response = fetch(texURL)
-        response = requests.get(texURL)
+        app = FastAPI()
+        @app.get("/proxy")
+        def proxy():
+            response = requests.get(texURL)
+            return response.json()    
         selector = Selector(text=response.text)
-        tex_urls = selector.xpath('//a[contains(@href, ".tex")]/@href').getall()
+        tex_urls = selector.css('a[href$=".tex"]::attr(href)').getall()
         for i in tex_urls:
             tex_urls.remove(i)
             if i in tex_urls:
