@@ -37,12 +37,8 @@ async def processTex(*args):
     content = document.getElementById('upload').files.item(0)
     content = await content.text()
     filename = document.getElementById('upload').files.item(0).name 
-    asyncio.ensure_future(push_file(content,filename))
-    #oldTex = await fetch(texURL)
-    #oldText = await oldTex.text()
-    #newTex = document.getElementById('upload').files.item(0)
-    #newText = await newTex.text()
-    
+
+@when('click','#pushToGit')
 async def push_file(content, filename):
     try:
         requests.post('https://the-greatest-endeavour.vercel.app/api/gitPUSH.py', json={
@@ -53,14 +49,12 @@ async def push_file(content, filename):
     except Exception as error:
         print(error)
 
-
 @when('click', '#downloadTex')
 async def downloadTex():
     response = await fetch(texURL)
     responseText = await response.text()
     download_file(responseText, "The Greatest Endeavour.tex")
     response = await fetch('https://the-greatest-endeavour.vercel.app/api/apiGET.py')
-
 
 @when('click', '#downloadPDF')
 async def downloadPDF():
@@ -72,9 +66,6 @@ async def downloadPDF():
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(pdfURL)
-
-
-
 
 #Process uploaded PDF
 '''
