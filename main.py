@@ -57,8 +57,8 @@ async def downloadTex():
         text = await response.text()
         data = json.loads(text)
         for key,value in data:
-                if key == "download_url":
-                        url_list.append(value)
+                if value['url'] = "download_url":
+                        url_list.append(value['url'])
         print(url_list)
         
 @when('click', '#downloadPDF')
