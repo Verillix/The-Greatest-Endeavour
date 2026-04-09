@@ -6,7 +6,8 @@ import requests
 import codecs
 import os
 from pypdf import PdfReader,PdfWriter
-import micropip
+import pyodide
+pyodide.loadPackage('micropip')
 from pyodide.http import open_url
 from dotenv import load_dotenv
 from pyodide.ffi import to_js
