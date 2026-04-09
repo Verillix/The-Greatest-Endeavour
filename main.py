@@ -53,8 +53,8 @@ async def push_file(content, filename):
 
 @when('click', '#downloadTex')
 async def downloadTex():
-        requests.get(texURL, headers=headers)
-        selector = Selector(text=text)
+        response = requests.get(texURL, headers=headers)
+        selector = Selector(text=response)
         for i in selector.css(".//@href"):
           print(i)    
         #download_TexFile(texURL, "LaTeX.dir")
