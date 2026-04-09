@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from pyodide.ffi import to_js
 import json
 import asyncio
+await micropip.install("fsspec")
 import fsspec
 from pathlib import Path
 
