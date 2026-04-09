@@ -38,7 +38,7 @@ async def processTex(*args):
     content = document.getElementById('upload').files.item(0)
     content = await content.text()
     filename = document.getElementById('upload').files.item(0).name
-    print(filename)    
+    print(filename)  
 
 @when('click','#uploadToGit')
 async def push_file(content, filename):
