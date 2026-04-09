@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 from pyodide.ffi import to_js
 import json
 import asyncio
+import fsspec
+from pathlib import Path
 
 texURL = 'https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
@@ -21,6 +23,11 @@ headers = {
 }
 
 def download_file(data, filename):
+        destination = Path.home() / "LaTeX"
+        destination.mkdir(exist_ok=True, parents=True)
+        fs = fsspec.filesystem("github", org="Verillix", repo="The-Greatest-Endeavour")
+        fs.get(fs.ls("src/"), destination.as_posix())
+'''
     #blob = Blob.new([data], {"type": "application/dir"})
     #url = URL.createObjectURL(blob)
     
@@ -31,7 +38,8 @@ def download_file(data, filename):
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-
+'''
+        
 @when('change', '#upload')
 async def processTex(*args):
     content = document.getElementById('upload').files.item(0)
