@@ -1,6 +1,5 @@
 micropip
 pathlib
-pygit2
 fsspec
 PyGithub
 requests
