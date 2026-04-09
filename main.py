@@ -54,10 +54,16 @@ async def push_file(content, filename):
 @when('click', '#downloadTex')
 async def downloadTex():
         response = fetch(texURL)
-        selector = Selector(text=response)
-        for i in selector.css(".//@href"):
-          print(i)    
-        #download_TexFile(texURL, "LaTeX.dir")
+        response = requests.get(texURL)
+        selector = Selector(text=response.text)
+        tex_urls = selector.xpath('//a[contains(@href, ".tex")]/@href').getall()
+        for i in tex_urls:
+            tex_urls.remove(i)
+            if i in tex_urls:
+                pass
+            else:
+                tex_urls.append(i)
+        print(tex_urls)
 @when('click', '#downloadPDF')
 async def downloadPDF():
     filename = "The Greatest Endeavour.pdf"
