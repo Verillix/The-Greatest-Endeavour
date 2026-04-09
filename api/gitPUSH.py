@@ -14,10 +14,10 @@ class handler(BaseHTTPRequestHandler):
         message   = body.get('message', 'Remote update')
 
         headers = {
-            "Authorization": f"Bearer {os.environ.get['GIT_TOKEN']}",
+            "Authorization": f"Bearer {os.environ.get('GIT_TOKEN')}",
             "Content-Type": "application/json"
         }
-        repo    = os.environ.get['GIT_REPO']
+        repo    = os.environ.get('GIT_REPO')
         url     = f"{GITHUB_API}/repos/{repo}/contents/{file_path}"
 
         # Get SHA if file already exists
