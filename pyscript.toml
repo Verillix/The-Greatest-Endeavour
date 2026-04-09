@@ -1,1 +1,1 @@
-packages = ["numpy","pypdf","requests","dotenv","bs4","BeautifulSoup"]
+packages = ["numpy","pypdf","requests","dotenv","bs4","parsel"]
