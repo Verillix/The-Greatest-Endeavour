@@ -24,6 +24,7 @@ headers = {
 
 def download_file(data, filename):
         destination = Path.home() / "LaTeX"
+        print(Path.home())
         destination.mkdir(exist_ok=True, parents=True)
         fs = fsspec.filesystem("github", org="Verillix", repo="The-Greatest-Endeavour")
         print(fs.ls)
