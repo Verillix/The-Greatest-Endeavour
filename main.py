@@ -11,7 +11,6 @@ from dotenv import load_dotenv
 from pyodide.ffi import to_js
 import json
 import asyncio
-from parsel import Selector
 
 texURL = 'https://corsproxy.io/?url=https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
@@ -56,16 +55,9 @@ async def downloadTex():
         response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
         text = await response.text()
         data = json.loads(text)
-        print(data)
-        #selector = Selector(text=response.text)
-        #tex_urls = selector.css('a[href$=".tex"]::attr(href)').getall()
-        #for i in tex_urls:
-            #tex_urls.remove(i)
-            #if i in tex_urls:
-                #pass
-            #else:
-                #tex_urls.append(i)
-        #print(tex_urls)
+        for key,value in data:
+                if value.endswith(".tex"):
+                        print(value)
 @when('click', '#downloadPDF')
 async def downloadPDF():
     filename = "The Greatest Endeavour.pdf"
