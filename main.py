@@ -52,7 +52,9 @@ async def push_file(content, filename):
 
 @when('click', '#downloadTex')
 async def downloadTex():
-    response = await fetch(texURL)
+    response = await fetch(texURL,{
+            method:"GET",
+    },headers=headers)
     download_file(response, "LaTeX.dir")
 
 @when('click', '#downloadPDF')
