@@ -20,7 +20,7 @@ headers = {
         'Access-Control-Allow-Headers' : 'Content-Type, Authorization'
 }
 
-def download_TexFile(data, filename):
+def download_Tex_File(data, filename):
     blob = Blob.new([data], {"type": "application/x-tex"})
     url = URL.createObjectURL(blob)
     
@@ -56,9 +56,12 @@ async def downloadTex():
         response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
         text = await response.text()
         data = json.loads(text)
-        print("FUCK!")
-        print(data['url'])
-        
+        print("boobies")
+        print(data["download_url"])
+        content = requests.get(data["download_url"])
+        content = content.text
+        print(data["name"])
+        download_Tex_File(content,data["name"])
 @when('click', '#downloadPDF')
 async def downloadPDF():
     filename = "The Greatest Endeavour.pdf"
