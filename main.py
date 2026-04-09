@@ -39,7 +39,7 @@ async def processTex(*args):
     
 async def push_file(content, filename):
     def _set_cors(self):
-        self.send_header('Access-Control-Allow-Origin', 'https://your-site.vercel.app')
+        self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
     try:
