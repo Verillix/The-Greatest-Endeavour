@@ -6,7 +6,7 @@ import requests
 import codecs
 import os
 from pypdf import PdfReader,PdfWriter
-from pyodide.http import open_url
+from pyodide.http import open_url,pyfetch
 from dotenv import load_dotenv
 from pyodide.ffi import to_js
 import json
@@ -14,7 +14,7 @@ import asyncio
 from parsel import Selector
 from fastapi import FastAPI
 
-texURL = 'https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX'
+texURL = 'https://corsproxy.io/?url=https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
 headers = {
         'Access-Control-Allow-Origin' : '*',
@@ -54,12 +54,9 @@ async def push_file(content, filename):
 
 @when('click', '#downloadTex')
 async def downloadTex():
-        app = FastAPI()
-        @app.get("/proxy")
-        def proxy():
-            response = requests.get(texURL)
-            return response
-        response = proxy()
+        
+        response = await pyfetch(f"https://corsproxy.io/?url=https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX")
+        text = await response.text()
         selector = Selector(text=response.text)
         tex_urls = selector.css('a[href$=".tex"]::attr(href)').getall()
         for i in tex_urls:
