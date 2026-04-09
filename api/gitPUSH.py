@@ -8,11 +8,10 @@ class handler(BaseHTTPRequestHandler):
         body = json.loads(self.rfile.read(length))
 
         file_path = body['filePath']
-        content   = body['content']
-        message   = body.get('message', 'Remote update')
-
-        g    = Github(os.environ['GITHUB_TOKEN'])
-        repo = g.get_repo(os.environ['GITHUB_REPO'])  # e.g. "owner/repo"
+        content = body['content']
+        message = body.get('message', 'Remote update')
+        g = Github(os.environ.get['GIT_TOKEN'])
+        #repo = g.get_repo(os.environ.get['GITHUB_REPO'])  # e.g. "owner/repo"
 
         try:
             # Update existing file
