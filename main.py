@@ -12,7 +12,6 @@ from pyodide.ffi import to_js
 import json
 import asyncio
 from parsel import Selector
-from fastapi import FastAPI
 
 texURL = 'https://corsproxy.io/?url=https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
