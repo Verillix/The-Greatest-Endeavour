@@ -45,8 +45,8 @@ async def processTex(*args):
 async def push_file(content, filename):
     try:
         requests.post('https://the-greatest-endeavour.vercel.app/api/gitPUSH.py', json={
-        'filepath' : 'filename',
-        'content': 'content',
+        'filePath' : filename,
+        'content': content,
         'message': 'Update config'
         }, headers = headers)
     except Exception as error:
