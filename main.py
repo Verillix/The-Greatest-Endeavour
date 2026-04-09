@@ -44,7 +44,7 @@ async def processTex(*args):
     
 async def push_file(content, filename):
     try:
-        res = requests.post('https://your-site.vercel.app/api/gitPUSH.py', json={
+        requests.post('https://the-greatest-endeavour.vercel.app/api/gitPUSH.py', json={
         'content': 'filename',
         'message': 'Update config'
         }, headers = headers)
