@@ -56,7 +56,8 @@ async def downloadTex():
         
         response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
         text = await response.text()
-        selector = Selector(text=response)
+        print(text)
+        selector = Selector(text=text)
         tex_urls = selector.css('a[href$=".tex"]::attr(href)').getall()
         for i in tex_urls:
             tex_urls.remove(i)
