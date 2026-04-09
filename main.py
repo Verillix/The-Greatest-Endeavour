@@ -54,15 +54,10 @@ async def push_file(content, filename):
 @when('click', '#downloadTex')
 async def downloadTex()
         requests.get(texURL,headers=headers)
-        soup = bs4.BeautifulSoup(database.text, 'html.parser')
-        csvfiles = soup.find_all(title=re.compile("\.tex$"))
-        
-        ilename = [ ]
-        for i in csvfiles:
-                filename.append(i.extract().get_text())
-        
-        print(filename)    
-        download_TexFile(texURL, "LaTeX.dir")
+        selector = Selector(text=text)
+        for i in selector.css(".//@href"):
+          print(i)    
+        #download_TexFile(texURL, "LaTeX.dir")
 @when('click', '#downloadPDF')
 async def downloadPDF():
     filename = "The Greatest Endeavour.pdf"
