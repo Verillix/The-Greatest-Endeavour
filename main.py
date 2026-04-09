@@ -56,10 +56,8 @@ async def downloadTex():
         response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
         text = await response.text()
         data = json.loads(text)
-        for key,value in data:
-                if value['url'] = "download_url":
-                        url_list.append(value['url'])
-        print(url_list)
+        print("FUCK!")
+        print(data['url'])
         
 @when('click', '#downloadPDF')
 async def downloadPDF():
