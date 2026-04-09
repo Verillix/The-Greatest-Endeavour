@@ -54,7 +54,6 @@ async def push_file(content, filename):
 
 @when('click', '#downloadTex')
 async def downloadTex():
-        response = fetch(texURL)
         app = FastAPI()
         @app.get("/proxy")
         def proxy():
