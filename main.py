@@ -27,7 +27,7 @@ def download_file(data, filename):
         destination.mkdir(exist_ok=True, parents=True)
         fs = fsspec.filesystem("github", org="Verillix", repo="The-Greatest-Endeavour")
         print(fs.ls)
-        fs.get(fs.ls("https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/d5d0292a5e582efae1f160c6b6bb0d41f3bfdc1c/LaTeX/The%20Greatest%20Endeavour.tex"), destination.as_posix())
+        fs.get(fs.ls("/LaTeX"), destination.as_posix())
 '''
     #blob = Blob.new([data], {"type": "application/dir"})
     #url = URL.createObjectURL(blob)
