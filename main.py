@@ -54,8 +54,6 @@ async def push_file(content, filename):
 @when('click', '#downloadTex')
 async def downloadTex():
         response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
-        print(response.json(),response.text,response.text())
-        print(response.json().decode())
         selector = Selector(text=text)
         tex_urls = selector.css('a[href$=".tex"]::attr(href)').getall()
         for i in tex_urls:
