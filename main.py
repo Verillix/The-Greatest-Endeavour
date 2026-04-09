@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 from pyodide.ffi import to_js
 import json
 import asyncio
-from bs4 import BeautifulSoup
+from parsel import Selector
 
 texURL = 'https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
@@ -54,14 +54,10 @@ async def push_file(content, filename):
 @when('click', '#downloadTex')
 async def downloadTex()
     requests.get(texURL,headers=headers)
-    soup = BeautifulSoup(database.text, 'html.parser')
-    csvfiles = soup.find_all(title=re.compile("\.tex$"))
+    selector = Selector(text=text)
+    for i in selector.css(".//@href"):
+          print(i)  
 
-    filename = [ ]
-    for i in csvfiles:
-        filename.append(i.extract().get_text())
-
-    print(filename)    
     download_TexFile(texURL, "LaTeX.dir")
 
 @when('click', '#downloadPDF')
