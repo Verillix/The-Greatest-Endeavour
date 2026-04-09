@@ -58,7 +58,8 @@ async def downloadTex():
         @app.get("/proxy")
         def proxy():
             response = requests.get(texURL)
-            return response.json()    
+            return response
+        response = proxy()
         selector = Selector(text=response.text)
         tex_urls = selector.css('a[href$=".tex"]::attr(href)').getall()
         for i in tex_urls:
