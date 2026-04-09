@@ -38,12 +38,11 @@ async def processTex(*args):
     #newText = await newTex.text()
     
 async def push_file(content, filename):
-    def _set_cors(self):
+    try:
+        res = requests.post('https://your-site.vercel.app/api/gitPUSH.py', json={
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-    try:
-        res = requests.post('https://your-site.vercel.app/api/gitPUSH.py', json={
         'filePath': 'data/config.json',
         'content': '{"key": "value"}',
         'message': 'Update config'
