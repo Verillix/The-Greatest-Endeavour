@@ -54,10 +54,8 @@ async def push_file(content, filename):
 async def downloadTex():
     response = await fetch(texURL)
     responseText = await response.text()
-    #download_file(responseText, "The Greatest Endeavour.tex")
+    download_file(responseText, "The Greatest Endeavour.tex")
     response = await fetch('https://the-greatest-endeavour.vercel.app/api/apiGET.py')
-    token = await response.text()  # raw text
-    print(token)
 
 
 @when('click', '#downloadPDF')
