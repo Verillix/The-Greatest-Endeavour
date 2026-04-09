@@ -34,9 +34,10 @@ def download_file(data, filename):
 
 @when('change', '#upload')
 async def processTex(*args):
-    content = document.getElementById('upload').files.item(0) 
+    content = document.getElementById('upload').files.item(0)
+    filename = content.name()
     content = await content.text()
-    asyncio.ensure_future(push_file(content, content.name))
+    asyncio.ensure_future(push_file(content,filename))
     #oldTex = await fetch(texURL)
     #oldText = await oldTex.text()
     #newTex = document.getElementById('upload').files.item(0)
