@@ -14,7 +14,7 @@ class handler(BaseHTTPRequestHandler):
         #repo = g.get_repo(os.environ.get['GITHUB_REPO'])  # e.g. "owner/repo"
 
         try:
-            # Update existing file
+            # Update existing files
             existing = repo.get_contents(file_path)
             repo.update_file(file_path, message, content, existing.sha)
         except Exception:
