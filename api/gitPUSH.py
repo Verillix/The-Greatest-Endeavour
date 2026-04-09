@@ -13,7 +13,6 @@ class handler(BaseHTTPRequestHandler):
 
         g    = Github(os.environ['GIT_TOKEN'])
         repo = g.get_repo(os.environ['GIT_REPO'])  # e.g. "owner/repo"
-        print(repo.full_name)
         try:
             # Update existing file
             existing = repo.get_contents(file_path)
