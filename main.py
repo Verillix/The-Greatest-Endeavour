@@ -53,17 +53,17 @@ async def push_file(content, filename):
 
 @when('click', '#downloadTex')
 async def downloadTex():
-        response = pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
-        prinnt(response.text)
-        selector = Selector(text=response.text)
-        tex_urls = selector.css('a[href$=".tex"]::attr(href)').getall()
-        for i in tex_urls:
-            tex_urls.remove(i)
-            if i in tex_urls:
-                pass
-            else:
-                tex_urls.append(i)
-        print(tex_urls)
+        response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
+        print(response.text)
+        #selector = Selector(text=response.text)
+        #tex_urls = selector.css('a[href$=".tex"]::attr(href)').getall()
+        #for i in tex_urls:
+            #tex_urls.remove(i)
+            #if i in tex_urls:
+                #pass
+            #else:
+                #tex_urls.append(i)
+        #print(tex_urls)
 @when('click', '#downloadPDF')
 async def downloadPDF():
     filename = "The Greatest Endeavour.pdf"
