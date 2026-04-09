@@ -40,9 +40,9 @@ async def processTex(*args):
 async def push_file(content, filename):
     try:
         res = requests.post('https://your-site.vercel.app/api/gitPUSH.py', json={
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
-        self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        self.send_header('Access-Control-Allow-Origin', '*'),
+        self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS'),
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization'),
         'filePath': 'data/config.json',
         'content': '{"key": "value"}',
         'message': 'Update config'
