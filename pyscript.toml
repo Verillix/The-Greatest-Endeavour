@@ -1,1 +1,1 @@
-packages = ["numpy","pypdf","requests","dotenv","ffspec"]
+packages = ["numpy","pypdf","requests","dotenv","fsspec"]
