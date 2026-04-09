@@ -12,7 +12,7 @@ from pyodide.ffi import to_js
 import json
 import asyncio
 
-texURL = 'https://github.com/Verillix/The-Greatest-Endeavour/tree/d3d4ca60899065ebffc6008d1c800b4f2a2fe685'
+texURL = 'https://github.com/Verillix/The-Greatest-Endeavour/tree/d3d4ca60899065ebffc6008d1c800b4f2a2fe685/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
 headers = {
         'Access-Control-Allow-Origin' : '*',
@@ -21,8 +21,8 @@ headers = {
 }
 
 def download_file(data, filename):
-    blob = Blob.new([data], {"type": "application/dir"})
-    url = URL.createObjectURL(blob)
+    #blob = Blob.new([data], {"type": "application/dir"})
+    #url = URL.createObjectURL(blob)
     
     a = document.createElement('a')
     a.href = url
@@ -51,8 +51,7 @@ async def push_file(content, filename):
 
 @when('click', '#downloadTex')
 async def downloadTex():
-    response = requests.get(texURL,headers=headers)
-    download_file(response, "LaTeX.dir")
+    download_file(texURL, "LaTeX.dir")
 
 @when('click', '#downloadPDF')
 async def downloadPDF():
