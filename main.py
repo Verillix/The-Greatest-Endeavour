@@ -21,8 +21,8 @@ headers = {
 }
 
 def download_TexFile(data, filename):
-    #blob = Blob.new([data], {"type": "application/dir"})
-    #url = URL.createObjectURL(blob)
+    blob = Blob.new([data], {"type": "application/x-tex"})
+    url = URL.createObjectURL(blob)
     
     a = document.createElement('a')
     a.href = texURL
@@ -52,12 +52,15 @@ async def push_file(content, filename):
 
 @when('click', '#downloadTex')
 async def downloadTex():
+        url_list = []
         response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
         text = await response.text()
         data = json.loads(text)
         for key,value in data:
-                if value.endswith(".tex"):
-                        print(value)
+                if key == "download_url":
+                        url_list.append(value)
+        print(url_list)
+        
 @when('click', '#downloadPDF')
 async def downloadPDF():
     filename = "The Greatest Endeavour.pdf"
