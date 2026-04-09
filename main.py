@@ -21,7 +21,7 @@ headers = {
         'Access-Control-Allow-Headers' : 'Content-Type, Authorization'
 }
 
-def downloadTex(data, filename):
+def download_TexFile(data, filename):
     #blob = Blob.new([data], {"type": "application/dir"})
     #url = URL.createObjectURL(blob)
     
@@ -53,7 +53,7 @@ async def push_file(content, filename):
 
 @when('click', '#downloadTex')
 async def downloadTex()
-    downloadTex(texURL, "LaTeX.dir")
+    download_TexFile(texURL, "LaTeX.dir")
 
 @when('click', '#downloadPDF')
 async def downloadPDF():
