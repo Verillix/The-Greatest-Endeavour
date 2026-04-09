@@ -12,7 +12,7 @@ from pyodide.ffi import to_js
 import json
 import asyncio
 
-texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/LaTeX/The%20Greatest%20Endeavour.tex'
+texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/LaTeX
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/LaTeX/The%20Greatest%20Endeavour.pdf'
 headers = {
         'Access-Control-Allow-Origin' : '*',
