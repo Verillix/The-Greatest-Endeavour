@@ -6,7 +6,7 @@ import requests
 import codecs
 import os
 from pypdf import PdfReader,PdfWriter
-from pyodide.http import open_url,pyfetch
+from pyodide.http import pyfetch
 from dotenv import load_dotenv
 from pyodide.ffi import to_js
 import json
@@ -55,7 +55,7 @@ async def push_file(content, filename):
 @when('click', '#downloadTex')
 async def downloadTex():
         
-        response = await pyfetch(f"https://corsproxy.io/?url=https://github.com/Verillix/The-Greatest-Endeavour/tree/c48eee33166b79868bd92c364868b6d64cfb0019/LaTeX")
+        response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
         text = await response.text()
         selector = Selector(text=response.text)
         tex_urls = selector.css('a[href$=".tex"]::attr(href)').getall()
