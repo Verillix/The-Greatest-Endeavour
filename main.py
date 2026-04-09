@@ -25,7 +25,7 @@ def download_file(data, filename):
     #url = URL.createObjectURL(blob)
     
     a = document.createElement('a')
-    a.href = url
+    a.href = texURL
     a.download = filename
     document.body.appendChild(a)
     a.click()
