@@ -14,6 +14,11 @@ import asyncio
 
 texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.tex'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
+headers = {
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods' : 'POST, OPTIONS',
+        'Access-Control-Allow-Headers' : 'Content-Type, Authorization'
+}
 
 def download_file(data, filename):
     blob = Blob.new([data], {"type": "application/x-tex"})
@@ -39,13 +44,10 @@ async def processTex(*args):
     
 async def push_file(content, filename):
     try:
-        send_header('Access-Control-Allow-Origin', '*'),
-        send_header('Access-Control-Allow-Methods', 'POST, OPTIONS'),
-        send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization'),
         res = requests.post('https://your-site.vercel.app/api/gitPUSH.py', json={
         'content': 'filename',
         'message': 'Update config'
-        })
+        }, headers = headers)
     except Exception as error:
         print(error)
 
