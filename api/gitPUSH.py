@@ -3,6 +3,11 @@ import json, os
 from github import Github
 
 class handler(BaseHTTPRequestHandler):
+    def _set_cors(self):
+        self.send_header('Access-Control-Allow-Origin', 'https://your-site.vercel.app')
+        self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    
     def do_POST(self):
         length = int(self.headers.get('Content-Length', 0))
         body = json.loads(self.rfile.read(length))
