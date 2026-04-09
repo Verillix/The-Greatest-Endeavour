@@ -12,8 +12,8 @@ from pyodide.ffi import to_js
 import json
 import asyncio
 
-texURL = 'https://github.com/Verillix/The-Greatest-Endeavour/tree/d3d4ca60899065ebffc6008d1c800b4f2a2fe685'
-pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/LaTeX/The%20Greatest%20Endeavour.pdf'
+texURL = 'https://github.com/Verillix/The-Greatest-Endeavour/tree/d3d4ca60899065ebffc6008d1c800b4f2a2fe685/LaTeX'
+pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
 headers = {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods' : 'POST, OPTIONS',
