@@ -1,31 +1,31 @@
-import os
-import base64
-import requests
 from http.server import BaseHTTPRequestHandler
+import json, os
+from github import Github
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
+        length = int(self.headers.get('Content-Length', 0))
+        body = json.loads(self.rfile.read(length))
+
+        file_path = body['filePath']
+        content   = body['content']
+        message   = body.get('message', 'Remote update')
+
+        g    = Github(os.environ['GITHUB_TOKEN'])
+        repo = g.get_repo(os.environ['GITHUB_REPO'])  # e.g. "owner/repo"
+
         try:
-            token = os.environ.get('GITHUB_TOKEN')
-            repo = os.environ.get('GITHUB_REPO')
+            # Update existing file
+            existing = repo.get_contents(file_path)
+            repo.update_file(file_path, message, content, existing.sha)
+        except Exception:
+            # File doesn't exist yet — create it
+            repo.create_file(file_path, message, content)
 
-            content_length = int(self.headers.get('Content-Length', 0))
-            content = self.rfile.read(content_length).decode('utf-8')
-            encoded = base64.b64encode(content.encode()).decode()
+        self._respond(200, {'success': True})
 
-            response = requests.put(
-                f'https://api.github.com/repos/{repo}/contents/upload.tex',
-                headers={'Authorization': f'Bearer {token}'},
-                json={'message': 'Upload file', 'content': encoded}
-            )
-
-            self.send_response(response.status_code)
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            self.wfile.write(response.content)
-
-        except Exception as e:
-            self.send_response(500)
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            self.wfile.write(str(e).encode())
+    def _respond(self, status, data):
+        self.send_response(status)
+        self.send_header('Content-Type', 'application/json')
+        self.end_headers()
+        self.wfile.write(json.dumps(data).encode())
