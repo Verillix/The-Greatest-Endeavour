@@ -38,7 +38,7 @@ async def processTex(*args):
     content = await content.text()
     filename = document.getElementById('upload').files.item(0).name 
 
-@when('click','#pushToGit')
+@when('click','#uploadToGit')
 async def push_file(content, filename):
     try:
         requests.post('https://the-greatest-endeavour.vercel.app/api/gitPUSH.py', json={
