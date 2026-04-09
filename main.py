@@ -39,13 +39,11 @@ async def processTex(*args):
     
 async def push_file(content, filename):
     try:
-        response = await fetch(
-            'https://the-greatest-endeavour.vercel.app/api/gitPUSH.py',
-            method='POST',
-            headers=to_js({'Access-Control-Allow-Origin' : '*'}),
-            body={'filename': filename, 'content': content}
-        )
-        print('Done!' if response.ok else 'Failed!')
+        res = requests.post('https://your-site.vercel.app/api/gitPUSH.py', json={
+        'filePath': 'data/config.json',
+        'content': '{"key": "value"}',
+        'message': 'Update config'
+        })
     except Exception as error:
         print(error)
 
