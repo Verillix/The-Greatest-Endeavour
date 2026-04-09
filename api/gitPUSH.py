@@ -3,7 +3,9 @@ import json, os
 from github import Github
 
 class handler(BaseHTTPRequestHandler):
-    print(os.environ['GIT_TOKEN'])
+    g = Github(os.environ['GIT_TOKEN'])
+    repo = g.get_repo(os.environ['GIT_REPO']
+    print(repo.full_name)
     def do_POST(self):
         length = int(self.headers.get('Content-Length', 0))
         body = json.loads(self.rfile.read(length))
