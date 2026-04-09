@@ -12,7 +12,7 @@ from pyodide.ffi import to_js
 import json
 import asyncio
 
-texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/LaTeX
+texURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/LaTeX/The%20Greatest%20Endeavour.pdf'
 headers = {
         'Access-Control-Allow-Origin' : '*',
@@ -51,10 +51,8 @@ async def push_file(content, filename):
 
 @when('click', '#downloadTex')
 async def downloadTex():
-    response = await fetch(texURL)
-    responseText = await response.text()
-    download_file(responseText, "The Greatest Endeavour.tex")
-    response = await fetch('https://the-greatest-endeavour.vercel.app/api/apiGET.py')
+    response = texURL
+    download_file(texURL)
 
 @when('click', '#downloadPDF')
 async def downloadPDF():
