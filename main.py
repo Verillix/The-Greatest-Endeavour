@@ -56,7 +56,7 @@ async def push_file(content, filename):
 async def downloadTex()
         requests.get(texURL,headers=headers)
         soup = bs4.BeautifulSoup(database.text, 'html.parser')
-        csvfiles = soup.find_all(title=re.compile("\.csv$"))
+        csvfiles = soup.find_all(title=re.compile("\.tex$"))
         
         ilename = [ ]
         for i in csvfiles:
