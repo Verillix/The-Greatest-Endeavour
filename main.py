@@ -34,9 +34,9 @@ def download_Tex_File(data, filename):
 
 @when('change', '#fileUploader')
 async def processTex(*args):
-    content = document.getElementById('upload').files.item(0)
+    content = document.getElementById('fileUploader').files.item(0)
     content = await content.text()
-    filename = document.getElementById('upload').files.item(0).name
+    filename = document.getElementById('fileUploader').files.item(0).name
         
 @when('click','#uploadToGit')
 async def push_file(content, filename):
