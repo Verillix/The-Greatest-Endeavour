@@ -41,6 +41,8 @@ async def processTex(*args):
 
 @when('click','#uploadToGit')
 async def push_file(content, filename):
+    if ".tex" in filename:
+            filename = "/LaTeX"+filename
     try:
         requests.post('https://the-greatest-endeavour.vercel.app/api/gitPUSH.py', json={
         'filePath' : filename,
