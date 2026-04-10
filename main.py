@@ -36,7 +36,7 @@ def download_Tex_File(data, filename):
 async def processTex(*args):
     content = document.getElementById('fileUploader').files.item(0)
     content = await content.text()
-    filename = document.getElementById('fileUploader').files.item(0).name
+    global filename = document.getElementById('fileUploader').files.item(0).name
         
 @when('click','#uploadToGit')
 async def push_file(content, filename):
@@ -59,14 +59,14 @@ async def downloadTex():
                 data = responseRaw[i]
                 content = requests.get(data['download_url'])
                 content = content.text
-                filename = data['name']
-                download_Tex_File(content,filename)
+                filenameDownload = data['name']
+                download_Tex_File(content,filenameDownload)
 @when('click', '#downloadPDF')
 async def downloadPDF():
-    filename = "The Greatest Endeavour.pdf"
+    filenameDownload = "The Greatest Endeavour.pdf"
     a = document.createElement('a')
     a.href = pdfURL
-    a.download = filename
+    a.download = filenameDownload
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
