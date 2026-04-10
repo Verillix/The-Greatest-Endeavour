@@ -40,7 +40,7 @@ async def processTex(*args):
     filename = document.getElementById('fileUploader').files.item(0).name
         
 @when('click','#uploadToGit')
-async def push_file(content, filename):
+async def push_file(content):
     if ".tex" in filename:
             filename = "/LaTeX"+filename
     try:
