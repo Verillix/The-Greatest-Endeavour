@@ -41,7 +41,8 @@ async def processTex(*args):
         
 @when('click','#uploadToGit')
 async def push_file(content):
-    global filename    
+    global filename
+    print(filename)
     if ".tex" in filename:
             filename = "/LaTeX"+filename
     try:
