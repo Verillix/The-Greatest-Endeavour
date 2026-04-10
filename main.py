@@ -32,13 +32,12 @@ def download_Tex_File(data, filename):
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
 
-@when('change', '#upload')
+@when('change', '#fileUploader')
 async def processTex(*args):
     content = document.getElementById('upload').files.item(0)
     content = await content.text()
     filename = document.getElementById('upload').files.item(0).name
-    print(filename)  
-
+        
 @when('click','#uploadToGit')
 async def push_file(content, filename):
     if ".tex" in filename:
