@@ -55,12 +55,12 @@ async def downloadTex():
         response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
         text = await response.text()
         data = json.loads(text)
-        print("boobies")
-        print(data[16])
-        content = requests.get(data[16])
+        print("I likje boobies")
+        print(data.get("download_url"))
+        content = requests.get(data.get("download_url"))
         content = content.text
         print(data[1])
-        download_Tex_File(content,data["name"])
+        download_Tex_File(content,data.get("name"))
 @when('click', '#downloadPDF')
 async def downloadPDF():
     filename = "The Greatest Endeavour.pdf"
