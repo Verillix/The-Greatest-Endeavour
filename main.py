@@ -36,8 +36,7 @@ def download_Tex_File(data, filename):
 async def processTex(*args):
     global content    
     content = document.getElementById('fileUploader').files.item(0)
-    content = await content.text()
-    print(content)    
+    content = await content.text()   
     global filename    
     filename = document.getElementById('fileUploader').files.item(0).name
         
@@ -48,6 +47,7 @@ async def push_file():
     if ".tex" in filename:
             filename = "/LaTeX"+filename
     try:
+        print(content,filename)    
         requests.post('https://the-greatest-endeavour.vercel.app/api/gitPUSH.py', json={
         'filePath' : filename,
         'content': content,
