@@ -12,7 +12,7 @@ from pyodide.ffi import to_js
 import json
 import asyncio
 
-texURL = 'https://api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019'
+texURL = 'https://api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX'
 pdfURL = 'https://raw.githubusercontent.com/Verillix/The-Greatest-Endeavour/refs/heads/main/The%20Greatest%20Endeavour.pdf'
 headers = {
         'Access-Control-Allow-Origin' : '*',
@@ -20,7 +20,7 @@ headers = {
         'Access-Control-Allow-Headers' : 'Content-Type, Authorization'
 }
 
-def download_Tex_File(data, filename,download):
+def download_Tex_File(data, filename):
     blob = Blob.new([data], {"type": "application/x-tex"})
     url = URL.createObjectURL(blob)
     
@@ -54,11 +54,12 @@ async def push_file(content, filename):
 async def downloadTex():
         response = await pyfetch(texURL)
         responseRaw = await response.json()
-        data = responseRaw[0]
-        content = requests.get(data['download_url'])
-        content = content.text
-        filename = data['name']
-        download_Tex_File(content,filename,data['download_url'])
+        for i in range(len(responseRaw)):
+                data = responseRaw[i]
+                content = requests.get(data['download_url'])
+                content = content.text
+                filename = data['name']
+                download_Tex_File(content,filename)
 @when('click', '#downloadPDF')
 async def downloadPDF():
     filename = "The Greatest Endeavour.pdf"
