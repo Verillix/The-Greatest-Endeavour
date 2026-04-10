@@ -1,5 +1,2 @@
-micropip
-pathlib
-fsspec
 PyGithub
 requests
