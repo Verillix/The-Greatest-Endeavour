@@ -45,7 +45,7 @@ async def push_file():
     global filename
     global content
     if ".tex" in filename:
-            filename = "/LaTeX"+filename
+            filename = "LaTeX/"+filename
     try:
         print(content,filename)    
         requests.post('https://the-greatest-endeavour.vercel.app/api/gitPUSH.py', json={
