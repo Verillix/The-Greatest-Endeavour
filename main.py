@@ -20,12 +20,12 @@ headers = {
         'Access-Control-Allow-Headers' : 'Content-Type, Authorization'
 }
 
-def download_Tex_File(data, filename):
+def download_Tex_File(data, filename,download):
     blob = Blob.new([data], {"type": "application/x-tex"})
     url = URL.createObjectURL(blob)
     
     a = document.createElement('a')
-    a.href = texURL
+    a.href = download
     a.download = filename
     document.body.appendChild(a)
     a.click()
@@ -58,7 +58,7 @@ async def downloadTex():
         content = requests.get(data['download_url'])
         content = content.text
         filename = data['name']
-        download_Tex_File(content,filename)
+        download_Tex_File(content,filename,data['download_url'])
 @when('click', '#downloadPDF')
 async def downloadPDF():
     filename = "The Greatest Endeavour.pdf"
