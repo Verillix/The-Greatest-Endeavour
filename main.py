@@ -35,7 +35,7 @@ def download_Tex_File(data, filename):
 @when('change', '#fileUploader')
 async def processTex(*args):
     content = document.getElementById('fileUploader').files.item(0)
-    content = content.text()
+    content = await content.text()
     global filename    
     filename = document.getElementById('fileUploader').files.item(0).name
         
@@ -43,7 +43,7 @@ async def processTex(*args):
 async def push_file(content):
     global filename
     print(filename)
-    print(content.text())    
+    print(await content.text())    
     if ".tex" in filename:
             filename = "/LaTeX"+filename
     try:
