@@ -54,7 +54,7 @@ async def push_file(content, filename):
 async def downloadTex():
         response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
         data = response.json()[0]
-        content = requests.get(text['download_url'])
+        content = requests.get(text['download_url']).text
         filename = data['name']
         download_Tex_File(content,filename)
 @when('click', '#downloadPDF')
