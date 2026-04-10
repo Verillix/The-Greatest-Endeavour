@@ -43,6 +43,7 @@ async def processTex(*args):
 async def push_file(content):
     global filename
     print(filename)
+    print(content)    
     if ".tex" in filename:
             filename = "/LaTeX"+filename
     try:
