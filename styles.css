@@ -1,3 +1,64 @@
-.title {
-    color: green;
-}
+@font-face { font-family : PressStart; src: url("PressStart2P-Regular.TTF") }
+        body{
+            background-image: url('The Greatest Endeavour.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        #uploadToGit{
+            height: 10vh;
+            width:40vh;
+            border-color:#DF7E4D;
+            border-width:0.75vh;
+            border-radius: 2.25vh;
+            border-style:solid;
+            font-size: 2.5vh;
+            color:#DF7E4D;
+            font-family: PressStart;
+            margin-top:37vh;
+            margin-left:56vh;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        #fileSelect{
+            padding: 3vh 5vh;
+            display: inline-block;
+            border-color:#C63824;
+            border-width:0.75vh;
+            border-radius: 2.25vh;
+            border-style:solid;
+            font-size: 2.5vh;
+            color:#C63824;
+            background-color: #FFFF;
+            font-family: PressStart;
+            margin-top:37vh;
+            margin-left:5vh;
+        }
+        #downloadPDF{
+            height: 10vh;
+            width: 18vh;
+            border-color:#C63824;
+            border-width:0.75vh;
+            border-radius: 2.25vh;
+            border-style:solid;
+            font-size: 1.9vh;
+            color:#FFFF;
+            background-color: #C63824;
+            font-family: PressStart;
+            margin-top:1vh;
+            margin-left:102vh;
+        }
+        #downloadTex{
+            height: 10vh;
+            width: 18vh;
+            border-color:#C63824;
+            border-width:0.75vh;
+            border-radius: 2.25vh;
+            border-style:solid;
+            font-size: 1.9vh;
+            color:#FFFF;
+            background-color: #C63824;
+            font-family: PressStart;
+            margin-top:1vh;
+            margin-left:2vh;
+        }
