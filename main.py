@@ -53,7 +53,7 @@ async def push_file(content, filename):
 @when('click', '#downloadTex')
 async def downloadTex():
         response = await pyfetch("//api.github.com/repos/Verillix/The-Greatest-Endeavour/contents/LaTeX?ref=c48eee33166b79868bd92c364868b6d64cfb0019")
-        text = json.dumps(await response.json())
+        text = json.loads(await response.json())
         urlDict = json.loads(text)
         print("PLEASE WORK")
         print(urlDict['name'])
