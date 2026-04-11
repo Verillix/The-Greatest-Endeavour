@@ -47,13 +47,13 @@ async def push_file():
     global content
     if ".tex" in filename:
             filename = "LaTeX/"+filename
-    try:
-        print(content,filename)    
+    try: 
         requests.post('https://the-greatest-endeavour.vercel.app/api/gitPUSH.py', json={
         'filePath' : filename,
         'content': content,
         'message': 'Update config'
         }, headers = headers)
+        document.getElementById('fileSelect').innerHTML = "Select File"
     except Exception as error:
         print(error)
 
