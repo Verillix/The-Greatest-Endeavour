@@ -16,6 +16,7 @@
             font-family: PressStart;
             margin-top:37vh;
             margin-left:56vh;
+            cursor: pointer;   
         }
         input[type="file"] {
             display: none;
@@ -33,6 +34,7 @@
             font-family: PressStart;
             margin-top:37vh;
             margin-left:5vh;
+            cursor: pointer;    
         }
         #downloadPDF{
             height: 10vh;
@@ -47,6 +49,7 @@
             font-family: PressStart;
             margin-top:1vh;
             margin-left:102vh;
+            cursor: pointer;    
         }
         #downloadTex{
             height: 10vh;
@@ -61,4 +64,5 @@
             font-family: PressStart;
             margin-top:1vh;
             margin-left:2vh;
+            cursor: pointer;    
         }
