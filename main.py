@@ -59,9 +59,9 @@ async def push_file():
 
 @when('click', '#downloadTex')
 async def downloadTex():
-        response = await pyfetch(texURL, {
+        response = await pyfetch(texURL,
                 headers = headers
-        })
+        )
         responseRaw = await response.json()
         for i in range(len(responseRaw)):
                 data = responseRaw[i]
